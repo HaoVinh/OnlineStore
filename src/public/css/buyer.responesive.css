@@ -1,0 +1,102 @@
+/*Phone*/
+@media (max-width: 1280px) {
+  :root {
+    --cart-w: 310px;
+  }
+  main {
+    width: auto;
+  }
+  .product {
+    grid-template-columns: auto auto;
+  }
+  .card {
+    margin: auto;
+  }
+  header .left ul {
+    display: none;
+  }
+  section ul {
+    flex-wrap: wrap;
+    margin-bottom: 50px;
+  }
+  menu {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 45vw;
+    z-index: 20;
+    background: #ea9782;
+    padding-top: 38px;
+    transition: all 0.5s ease-in-out;
+    opacity: 0;
+    visibility: hidden;
+  }
+  #Menu:checked ~ .app main menu {
+    opacity: 1;
+    visibility: visible;
+  }
+  menu label {
+    display: block;
+    position: fixed;
+    top: 0;
+    right: 0;
+    background-color: #cccccc4d;
+    width: 55vw;
+    bottom: 0;
+  }
+  .cart h2 {
+    width: 100%;
+  }
+  .cart {
+    width: 100vw;
+  }
+  .total {
+    width: calc(100vw - 40px);
+  }
+  .cart > label {
+    display: none;
+  }
+
+  header .left button {
+    visibility: visible;
+  }
+  menu li {
+    color: var(--bg-color);
+  }
+  .title label {
+    visibility: visible;
+  }
+  #receipt h2 label {
+    visibility: visible;
+  }
+  #receipt h2 {
+    width: 70%;
+  }
+}
+@media (max-width: 768px) {
+  .product {
+    grid-template-columns: auto;
+  }
+  .box img {
+    width: 75px;
+    height: 75px;
+  }
+  .detail h3 {
+    font-size: 22px;
+  }
+  .total {
+    width: calc(100vw - 40px);
+  }
+  #receipt h2 {
+    font-size: 28px;
+    width: 80%;
+  }
+
+  .user div {
+    right: -16vw;
+  }
+  .user div::before {
+    right: 16.5vw;
+  }
+}

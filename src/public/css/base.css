@@ -1,0 +1,21 @@
+:root {
+  --bdr-outline: 30px;
+  --bdr-input: 10px;
+  --bdr-img: 23px;
+  --bdr-btn: 10px;
+  --tr-height: 80px;
+  --cart-w: 210px;
+  --title-color: #514e62;
+  --bg-color: #fddfd7;
+  --submit-color: #f82444;
+}
+
+html::-webkit-scrollbar,
+.cart::-webkit-scrollbar,
+.wrapper::-webkit-scrollbar,
+section::-webkit-scrollbar,
+div::-webkit-scrollbar {
+  width: 0 !important;
+  overflow: -moz-scrollbars-none;
+  -ms-overflow-style: none;
+}
