@@ -65,7 +65,15 @@ const render = () => {
         </tr>
         <tr data-product=${product.id}>
           <th>Image</th>
-          <td data-product=${product.id}><img data-product=${product.id} class="img" src="${product.img}" alt=""></td>
+          <td data-product=${product.id}><img data-product=${product.id} class="img" src="${product.img}" alt="">
+          <input
+          data-product=${product.id}
+                    type="file"
+                    class="imgproduct"
+                    name="imgproduct"
+                    accept="image/*"
+                  />
+          </td>
         </tr>
         <tr data-product=${product.id}>
           <th>Description</th>
@@ -90,7 +98,15 @@ const render = () => {
     <td class="name" data-product=${product.id}>${product.name}</td>
     <td class="type" data-product=${product.id}>${product.type}</td>
     <td class="price" data-product=${product.id}>${product.price}</td>
-    <td data-product=${product.id}><img class="img" data-product=${product.id} src="${product.img}" alt=""></td>
+    <td data-product=${product.id}><img class="img" data-product=${product.id} src="${product.img}" alt="">
+    <input
+    data-product=${product.id}
+    type="file"
+    class="imgproduct"
+    name="imgproduct"
+    accept="image/*"
+  />
+    </td>
     <td class="description" data-product=${product.id}><div>${product.description}</div></td>
     <td data-product=${product.id}>
       <div class="flex item-center">
@@ -296,6 +312,10 @@ const render = () => {
         `.description[data-product="${index}"] div`
       );
       const getImg = document.querySelector(`.img[data-product="${index}"]`);
+      const imgProduct = document.querySelector(
+        `.imgproduct[data-product="${index}"]`
+      );
+
       const getType = document.querySelector(`.type[data-product="${index}"]`);
       item.onclick = () => {
         getId.setAttribute("contenteditable", "true");
@@ -310,6 +330,21 @@ const render = () => {
         td.forEach((td) => {
           td.classList.add("active");
         });
+        imgProduct.style.display = "block";
+        imgProduct.addEventListener("change", function () {
+          getImgData();
+        });
+        function getImgData() {
+          const files = imgProduct.files[0];
+          if (files) {
+            const fileReader = new FileReader();
+            fileReader.readAsDataURL(files);
+            fileReader.addEventListener("load", function () {
+              getImg.style.display = "block";
+              getImg.src = this.result;
+            });
+          }
+        }
       };
     });
     save.forEach((item) => {
@@ -414,6 +449,12 @@ const render = () => {
         getIsAdmin.setAttribute("contenteditable", "true");
         getAddresses.setAttribute("contenteditable", "true");
         getPhoneNumber.setAttribute("contenteditable", "true");
+        tr.forEach((tr) => {
+          tr.classList.add("active");
+        });
+        td.forEach((td) => {
+          td.classList.add("active");
+        });
       };
     });
     save.forEach((item) => {
@@ -456,6 +497,7 @@ const render = () => {
     const getBtn = document.querySelector(".app__logout");
     getBtn.onclick = () => {
       localStorage.setItem("currentUser", JSON.stringify(null));
+      window.location = "../buyer";
     };
   };
   handleLogOut();

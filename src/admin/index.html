@@ -26,12 +26,14 @@
             <input
               type="text"
               class="header__search-input flex item-center"
-              placeholder="Search" />
+              placeholder="Search"
+            />
             <button class="header__search-btn">
               <img
                 class="header__search-btn-icon"
                 src="../public/icon/search.svg"
-                alt="" />
+                alt=""
+              />
             </button>
           </form>
           <div class="header__navbar-admin flex">
@@ -68,7 +70,8 @@
                     id="iduser"
                     name="iduser"
                     value=""
-                    placeholder="Enter user id" />
+                    placeholder="Enter user id"
+                  />
                 </td>
               </tr>
               <tr>
@@ -80,7 +83,21 @@
                     id="nameuser"
                     name="nameuser"
                     value=""
-                    placeholder="Enter user name" />
+                    placeholder="Enter user name"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>Password:</td>
+                <td>
+                  <input
+                    type="text"
+                    maxlength="max-content"
+                    id="passworduser"
+                    name="passworduser"
+                    value=""
+                    placeholder="Enter user password"
+                  />
                 </td>
               </tr>
               <tr>
@@ -117,7 +134,8 @@
                     id="idproduct"
                     name="idproduct"
                     value=""
-                    placeholder="Enter product id" />
+                    placeholder="Enter product id"
+                  />
                 </td>
               </tr>
               <tr>
@@ -129,7 +147,8 @@
                     id="nameproduct"
                     name="nameproduct"
                     value=""
-                    placeholder="Enter product name" />
+                    placeholder="Enter product name"
+                  />
                 </td>
               </tr>
               <tr>
@@ -155,19 +174,20 @@
                     id="priceproduct"
                     name="price"
                     value=""
-                    placeholder="Enter product price" />
+                    placeholder="Enter product price"
+                  />
                 </td>
               </tr>
               <tr>
                 <td>Product image:</td>
-                <td>
-                  <img id="imgpreview" />
+                <td>     
+                    <img id="imgpreview" />
                   <input
                     type="file"
                     id="imgproduct"
                     name="imgproduct"
-                    accept="image/*" />
-                  <label class="img-product" for="imgproduct"> </label>
+                    accept="image/*"
+                  />
                 </td>
               </tr>
               <tr>
@@ -176,7 +196,8 @@
                   <input
                     id="description-product"
                     name="description"
-                    placeholder="Description" />
+                    placeholder="Description"
+                  />
                 </td>
               </tr>
             </table>
@@ -192,28 +213,11 @@
         <label for="navbar-input" id="logo" class="flex item-center">
           <img
             src="./../public/img/Composition-table-laptop_preview.png"
-            alt="" />
+            alt=""
+          />
         </label>
         <hr />
         <menu class="navbar justify-between">
-          <li class="navbar-item">
-            <a
-              ><img
-                src="./../public/icon/house.svg"
-                style="padding: 2px"
-                alt="" />Home page</a
-            >
-          </li>
-          <li class="navbar-item">
-            <label for="user" id="user">
-              <a
-                ><img src="./../public/icon/users.svg" alt="" />Users Management
-              </a>
-              <li>
-                <label for="adding-user"> <a>Add user</a> </label>
-              </li>
-            </label>
-          </li>
           <li class="navbar-item">
             <label for="product" id="product">
               <a
@@ -222,6 +226,16 @@
               </a>
               <li>
                 <label for="adding-product"> <a>Add product</a> </label>
+              </li>
+            </label>
+          </li>
+          <li class="navbar-item">
+            <label for="user" id="user">
+              <a
+                ><img src="./../public/icon/users.svg" alt="" />Users Management
+              </a>
+              <li>
+                <label for="adding-user"> <a>Add user</a> </label>
               </li>
             </label>
           </li>

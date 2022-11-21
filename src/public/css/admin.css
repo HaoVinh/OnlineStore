@@ -7,7 +7,7 @@
 }
 
 nav {
-  width: 200px;
+  width: 220px;
   min-height: 100vh;
   z-index: 2;
   background-color: var(--bg-color);
@@ -155,7 +155,9 @@ table {
 th {
   padding: 10px;
 }
-
+.imgproduct{
+  display: none;
+}
 .content td {
   border: 2px solid var(--title-color);
   height: var(--tr-height);
@@ -305,7 +307,7 @@ input[type="checkbox"] {
   z-index: 30;
 }
 .container {
-  padding: 16px;
+  padding: 40px;
   border-radius: 10px;
   background: var(--bg-color);
 }
