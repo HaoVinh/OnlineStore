@@ -65,7 +65,7 @@ const render = () => {
         </tr>
         <tr data-product=${product.id}>
           <th>Image</th>
-          <td data-product=${product.id}><img data-product=${product.id} class="img" src="${product.img}" alt="">
+          <td data-product=${product.id}><img id="imgId" data-product=${product.id} class="img" src="${product.img}" alt="">
           <input
           data-product=${product.id}
                     type="file"
@@ -85,7 +85,7 @@ const render = () => {
             <div class="flex-center">
             <button class="btn" data-product=${product.id} type="delete">Delete</button>
             <button class="btn" data-product=${product.id} type="update">Update</button>
-            <button class="btn" data-product=${product.id} type="save">save</button>
+            <button class="btn" data-product=${product.id} type="save">Save</button>
             </div>
           </td>
         </tr>
@@ -98,7 +98,7 @@ const render = () => {
     <td class="name" data-product=${product.id}>${product.name}</td>
     <td class="type" data-product=${product.id}>${product.type}</td>
     <td class="price" data-product=${product.id}>${product.price}</td>
-    <td data-product=${product.id}><img class="img" data-product=${product.id} src="${product.img}" alt="">
+    <td data-product=${product.id}><img id="imgId" class="img" data-product=${product.id} src="${product.img}" alt="">
     <input
     data-product=${product.id}
     type="file"
@@ -112,7 +112,7 @@ const render = () => {
       <div class="flex item-center">
       <button class="btn" data-product=${product.id} type="delete">Delete</button>
       <button class="btn" data-product=${product.id} type="update">Update</button>
-      <button class="btn" data-product=${product.id} type="save">save</button>
+      <button class="btn" data-product=${product.id} type="save">Save</button>
       </div>
     </td>
     </tr>
@@ -158,24 +158,8 @@ const render = () => {
         <td data-user=${user.id} class="isAdmin">${user.isAdmin}</td>
       </tr>
       <tr>
-        <th>Cart</th>
-        <td data-user=${user.id} >
-          <ul>${user.cart
-            .map((item) => {
-              console.log(item);
-              return `<li>
-                id: ${item.id},
-                quantity: ${item.quantity},
-                name: ${item.name},
-              </li>`;
-            })
-            .join("")}
-            </ul>
-          </td>
-      </tr>
-      <tr>
         <th>Action</th>
-        <td>
+        <td data-user=${user.id}>
           <div class="flex-center">
             <button class="btn" data-user=${
               user.id
@@ -183,7 +167,7 @@ const render = () => {
             <button class="btn" data-user=${
               user.id
             } type="update">Update</button>
-            <button class="btn" data-user=${user.id} type="save">save</button>
+            <button class="btn" data-user=${user.id} type="save">Save</button>
           </div>
         </td>
     </tr>
@@ -193,22 +177,15 @@ const render = () => {
     <td data-user=${user.id} class="id">${user.id}</td>
     <td data-user=${user.id} class="password">${user.password}</td>
     <td data-user=${user.id} class="isAdmin">${user.isAdmin}</td>
-    <td data-user=${user.id} class="cart">
-    <ul>${user.cart
-      .map((item) => {
-        return `<li>
-          id: ${item.id},
-          quantity: ${item.quantity},
-          name: ${item.name},
-        </li>`;
-      })
-      .join("")}
-      </ul></td>
-    <td>
+    <td data-user=${user.id} >
     <div class="flex-center">
       <button class="btn" data-user=${user.id} type="delete">Delete</button>
-      <button class="btn" data-user=${user.id} type="update">Update</button>
-      <button class="btn" data-user=${user.id} type="save">Save</button>
+      <button class="btn" id="update" data-user=${
+        user.id
+      } type="update">Update</button>
+      <button class="btn" id="save" data-user=${
+        user.id
+      } type="save">Save</button>
       </div>
     </td>
     </tr>
@@ -225,7 +202,6 @@ const render = () => {
         <th>ID</th>
         <th>Password </th>
         <th>isAdmin</th>
-        <th>Cart</th>
         <th>Action</th>
       </tr>
     </thead>
@@ -242,7 +218,7 @@ const render = () => {
     const getName = document.querySelector("#nameproduct");
     const getPrice = document.querySelector("#priceproduct");
     const getDescription = document.querySelector("#description-product");
-    const getImg = document.querySelector("#imgproduct");
+    const getImg = document.getElementById("imgId");
     const getType = document.querySelector("#type-select");
     submit.onclick = () => {
       const product = {
@@ -250,7 +226,7 @@ const render = () => {
         name: getName.value,
         price: getPrice.value,
         description: getDescription.value,
-        img: getImg.value,
+        img: getImg.src,
         type: getType.value,
       };
       // Validate values
@@ -267,13 +243,9 @@ const render = () => {
       getName.value = "";
       getPrice.value = "";
       getDescription.value = "";
-      getImg.value = "";
+      getImg.src= "";
       getType.value = "";
       addProduct(product);
-      console.log(
-        "🚀 ~ file: index.js ~ line 101 ~ handleAddProduct ~ productList",
-        productList
-      );
       render();
     };
   };
@@ -297,8 +269,8 @@ const render = () => {
     const update = document.querySelectorAll(
       "button[data-product][type=update]"
     );
-    const save = document.querySelectorAll("button[data-product][type=save]");
 
+    const save = document.querySelectorAll("button[data-product][type=save]");
     update.forEach((item) => {
       const index = item.dataset.product;
       const tr = document.querySelectorAll(`tr[data-product="${index}"]`);
@@ -317,7 +289,15 @@ const render = () => {
       );
 
       const getType = document.querySelector(`.type[data-product="${index}"]`);
+      const getUpdateBtn = document.querySelector(
+        `button[type="update"][data-product="${index}"]`
+      );
+      const getSaveBtn = document.querySelector(
+        `button[type="save"][data-product="${index}"]`
+      );
       item.onclick = () => {
+        getUpdateBtn.style.display = "none";
+        getSaveBtn.style.display = "block";
         getId.setAttribute("contenteditable", "true");
         getName.setAttribute("contenteditable", "true");
         getPrice.setAttribute("contenteditable", "true");
@@ -383,35 +363,26 @@ const render = () => {
   handleUpdateProduct();
   // add user
   const handleAdduser = () => {
-    const submit = document.querySelector(".submit");
-    const getName = document.querySelector(".name");
-    const getPassword = document.querySelector(".password");
-    const getIsAdmin = document.querySelector(".isAdmin");
-    const getAddresses = document.querySelector(".addresses");
-    const getPhoneNumber = document.querySelector(".phoneNumber");
-    const getCart = document.querySelector(".cart");
+    const submit = document.querySelector("#adduser");
+    const getId = document.querySelector("#iduser");
+    const getPassword = document.querySelector("#passworduser");
+    const getIsAdmin = document.querySelector("#checkadmin");
     submit.onclick = () => {
       const user = {
-        name: getName.values,
+        id: getId.value,
         password: getPassword.value,
         isAdmin: getIsAdmin.value,
-        addresses: getAddresses.value,
-        phoneNumber: getPhoneNumber.value,
-        cart: getCart.value,
       };
       // Validate values
       if (!validateValue(userList, user, "UserID đã tồn tại", "Thiếu")) return;
       getId.value = "";
-      getName.value = "";
-      getPrice.value = "";
-      getDescription.value = "";
-      getImg.value = "";
-      getType.value = "";
+      getPassword.value = "";
+      getIsAdmin.value = "";
       addUser(user);
       render();
     };
   };
-  // handleAdduser();
+  handleAdduser();
   // delete user
   const handleDeleteUser = () => {
     const getBtn = document.querySelectorAll("button[data-user][type=delete]");
@@ -430,6 +401,8 @@ const render = () => {
     const save = document.querySelectorAll("button[data-user][type=save]");
     update.forEach((item) => {
       const index = item.dataset.user;
+      const tr = document.querySelectorAll(`tr[data-user="${index}"]`);
+      const td = document.querySelectorAll(`td[data-user="${index}"]`);
       const getId = document.querySelector(`.id[data-user="${index}"]`);
       const getPassword = document.querySelector(
         `.password[data-user="${index}"]`
@@ -437,18 +410,18 @@ const render = () => {
       const getIsAdmin = document.querySelector(
         `.isAdmin[data-user="${index}"]`
       );
-      const getAddresses = document.querySelector(
-        `.addresses[data-user="${index}"]`
+      const getUpdateBtn = document.querySelector(
+        `button[type="update"][data-user="${index}"]`
       );
-      const getPhoneNumber = document.querySelector(
-        `.phoneNumber[data-user="${index}"]`
+      const getSaveBtn = document.querySelector(
+        `button[type="save"][data-user="${index}"]`
       );
       item.onclick = () => {
+        getUpdateBtn.style.display = "none";
+        getSaveBtn.style.display = "block";
         getId.setAttribute("contenteditable", "true");
         getPassword.setAttribute("contenteditable", "true");
         getIsAdmin.setAttribute("contenteditable", "true");
-        getAddresses.setAttribute("contenteditable", "true");
-        getPhoneNumber.setAttribute("contenteditable", "true");
         tr.forEach((tr) => {
           tr.classList.add("active");
         });

@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../public/css/setup.css" />
     <link rel="stylesheet" href="../public/css/admin.css" />
     <link rel="stylesheet" href="../public/css/admin.responsive.css" />
-    <title>Document</title>
+    <title>Admin</title>
   </head>
   <body>
     <div class="app">
@@ -54,6 +54,11 @@
           <h2>Users list</h2>
           <div></div>
         </section>
+        <input type="radio" name="menu" id="receipts" />
+        <section class="receipts flex-col flex-center">
+          <h2>Receipts list</h2>
+          <div></div>
+        </section>
       </div>
 
       <div id="add-user" class="flex-center">
@@ -74,7 +79,7 @@
                   />
                 </td>
               </tr>
-              <tr>
+              <!-- <tr>
                 <td>User name:</td>
                 <td>
                   <input
@@ -86,7 +91,7 @@
                     placeholder="Enter user name"
                   />
                 </td>
-              </tr>
+              </tr> -->
               <tr>
                 <td>Password:</td>
                 <td>
@@ -103,7 +108,7 @@
               <tr>
                 <td>Is Admin:</td>
                 <td>
-                  <select name="" id="">
+                  <select name="" id="checkadmin">
                     <option value="false">false</option>
                     <option value="true">true</option>
                   </select>
@@ -111,9 +116,7 @@
               </tr>
             </table>
             <div class="flex-center">
-              <button class="btn" id="addproduct" type="button" class="submit">
-                Add
-              </button>
+              <button id="adduser" type="button" class="btn submit">Add</button>
             </div>
           </div>
         </div>
@@ -180,8 +183,8 @@
               </tr>
               <tr>
                 <td>Product image:</td>
-                <td>     
-                    <img id="imgpreview" />
+                <td>
+                  <img id="imgpreview" src="../public/img/" />
                   <input
                     type="file"
                     id="imgproduct"

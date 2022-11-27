@@ -13,17 +13,17 @@ const table2Img = "../public/img/Table2-removebg-preview.png";
 const PRODUCT_LIST = "PRODUCT_LIST";
 
 const type = {
-  table: "table",
-  chair: "chair",
-  lamp: "lamp",
-  clock: "clock",
-  combo: "combo",
+  table: "Table",
+  chair: "Chair",
+  lamp: "Lamp",
+  clock: "Clock",
+  combo: "Combo",
 };
 const typeList = Object.values(type);
 const defaultProductList = [
   {
     id: "0",
-    name: "armchair",
+    name: "Armchair",
     price: 13.5,
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel eveniet alias a rerum sint at reiciendis soluta eligendi, illo, odit incidunt labore hic dolor repudiandae accusamus, aperiam perspiciatis culpa quaerat.",
@@ -32,7 +32,7 @@ const defaultProductList = [
   },
   {
     id: "1",
-    name: "chair",
+    name: "Chair",
     price: 13.5,
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel eveniet alias a rerum sint at reiciendis soluta eligendi, illo, odit incidunt labore hic dolor repudiandae accusamus, aperiam perspiciatis culpa quaerat.",
@@ -41,7 +41,7 @@ const defaultProductList = [
   },
   {
     id: "2",
-    name: "clock",
+    name: "Clock",
     price: 13.5,
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel eveniet alias a rerum sint at reiciendis soluta eligendi, illo, odit incidunt labore hic dolor repudiandae accusamus, aperiam perspiciatis culpa quaerat.",
@@ -64,7 +64,7 @@ const defaultProductList = [
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel eveniet alias a rerum sint at reiciendis soluta eligendi, illo, odit incidunt labore hic dolor repudiandae accusamus, aperiam perspiciatis culpa quaerat.",
     img: easelImg,
-    type: "",
+    type: type.combo,
   },
   {
     id: "5",

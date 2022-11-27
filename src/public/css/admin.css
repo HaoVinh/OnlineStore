@@ -200,6 +200,7 @@ input[type="file"]::file-selector-button {
   margin: 0 10px;
   border-radius: 10px;
   color: #fff;
+  transition: 0.2s;
 }
 button[type="delete"] {
   background-color: red;
@@ -208,19 +209,19 @@ button[type="update"] {
   background-color: rgb(28, 223, 28);
 }
 button[type="save"] {
+  display: none;
   background-color: aquamarine;
 }
 button:hover {
-  background-color: rgb(229, 226, 226);
   cursor: pointer;
-  color: #000000;
+  color: var(--title-color);
 }
 
 .product table thead tr th:nth-child(1) {
   width: 7%;
 }
 .product table thead tr th:nth-child(2) {
-  width: 7%;
+  width: 10%;
 }
 .product table thead tr th:nth-child(3) {
   width: 7%;
@@ -229,18 +230,19 @@ button:hover {
   width: 7%;
 }
 .product table thead tr th:nth-child(5) {
-  width: 7%;
+  width: 8%;
 }
 /* .description */
 .product table tbody tr td:nth-child(6) {
   text-align: left;
 }
-
-.user table thead tr th:nth-child(6) {
-  width: 15%;
+.user table thead tr th:nth-child(4){
+    width: 20%;
 }
-.user table tbody tr td:nth-child(7) {
-  border-right: none;
+
+
+.user table thead tr th:nth-child(5) {
+  width: 200px;
 }
 .content input[name="menu"] {
   display: none;
