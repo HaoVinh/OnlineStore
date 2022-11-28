@@ -1,8 +1,10 @@
 import controllers from "../controllers/controller.js";
 import { USER_LIST } from "./list/userList.js";
 import { PRODUCT_LIST } from "./list/productList.js";
+import { RECEIPT_LIST } from "./list/receiptList.js";
 import defaultUserList from "./list/userList.js";
 import defaultProductList from "./list/productList.js";
+import defaultReceiptList from "./list/receiptList.js";
 import { validateValue } from "../controllers/validator.js";
 // Get list
 let currentUser = JSON.parse(localStorage.getItem("currentUser"));
@@ -12,6 +14,7 @@ let productList =
 console.log("🚀 ~ file: index.js ~ line 9 ~ productList", productList);
 let userList = JSON.parse(localStorage.getItem(USER_LIST)) ?? defaultUserList;
 console.log("🚀 ~ file: index.js ~ line 12 ~ userList", userList);
+let receiptList = JSON.parse(localStorage.getItem(RECEIPT_LIST)) ?? defaultReceiptList;
 
 // Control productList
 const addProduct = (product) => {
@@ -38,6 +41,19 @@ const updateUser = (index, user) => {
 const deleteUser = (index) => {
   userList = controllers.delete(userList, index);
   localStorage.setItem(USER_LIST, JSON.stringify(userList));
+};
+// Control receiptList 
+const addReceipt = (receipt) => {
+  receiptList = controllers.add(receiptList, receipt);
+  localStorage.setItem(RECEIPT_LIST, JSON.stringify(receiptList));
+};
+const updateReceipt = (index, receipt) => {
+  receiptList = controllers.update(receiptList, index, receipt);
+  localStorage.setItem(RECEIPT_LIST, JSON.stringify(receiptList));
+};
+const deleteReceipt = (index) => {
+  receiptList = controllers.delete(receiptList, index);
+  localStorage.setItem(RECEIPT_LIST, JSON.stringify(receiptList));
 };
 
 // Render
@@ -210,6 +226,92 @@ const render = () => {
     document.querySelector(".user > div table tbody").innerHTML =
       renderUser.join("");
   }
+
+
+
+  //render Receipt
+  // let receiptList = JSON.parse(localStorage.getItem('index'))
+  // const renderReceipt = receiptList.map((receipt) => {
+  //   if (window.innerWidth < 1280) {
+  //     return `  
+  //     <table>
+  //     <tr>
+  //       <th>ID</th>
+  //       <td data-receipt=${receipt.receiptId} class="id">${receipt.receiptId}</td>
+  //     </tr>
+  //     <tr>
+  //       <th>Product ID</th>
+  //       <td data-receipt=${receipt.receiptId} class="productId">${receipt.id}</td>
+  //     </tr>
+  //     <tr>
+  //       <th>Quantity</th>
+  //       <td data-receipt=${receipt.receiptId} class="quantity"> ${receipt.quantity}</td>
+  //     </tr>
+  //     <tr>
+  //       <th>User ID</th>
+  //       <td data-receipt=${receipt.receiptId} class="userId">${receipt.userId}</td>
+  //     </tr>
+  //     <tr>
+  //       <th>Status</th>
+  //       <td data-receipt=${receipt.receiptId} class="status">${receipt.status}</td>
+  //     </tr>
+  //     <tr>
+  //       <th>Action</th>
+  //       <td data-receipt=${receipt.id}>
+  //         <div class="flex-center">
+  //           <button class="btn" data-receipt=${
+  //             receipt.id
+  //           } type="delete">Delete</button>
+  //           <button class="btn" data-receipt=${
+  //             receipt.id
+  //           } type="update">Update</button>
+  //           <button class="btn" data-receipt=${receipt.id} type="save">Save</button>
+  //         </div>
+  //       </td>
+  //   </tr>
+  // </table>`;
+  //   } else {
+  //     return `<tr>
+  //   <td data-receipt=${receipt.id} class="id">${receipt.id}</td>
+  //   <td data-receipt=${receipt.id} class="password">${receipt.password}</td>
+  //   <td data-receipt=${receipt.id} class="isAdmin">${receipt.isAdmin}</td>
+  //   <td data-receipt=${receipt.id} >
+  //   <div class="flex-center">
+  //     <button class="btn" data-receipt=${receipt.id} type="delete">Delete</button>
+  //     <button class="btn" id="update" data-receipt=${
+  //       receipt.id
+  //     } type="update">Update</button>
+  //     <button class="btn" id="save" data-receipt=${
+  //       receipt.id
+  //     } type="save">Save</button>
+  //     </div>
+  //   </td>
+  //   </tr>
+  // `;
+  //   }
+  // });
+  // if (window.innerWidth < 1280) {
+  //   document.querySelector(".receipt > div").innerHTML = renderReceipt.join("");
+  // } else {
+  //   document.querySelector(".receipt > div").innerHTML = `
+  //   <table>
+  //   <thead>
+  //     <tr>
+  //       <th>Receipt Id</th>
+  //       <th>Product Id </th>
+  //       <th>Quantity</th>
+  //       <th>User Id</th>
+  //       <th>Status</th>
+  //       <th>Action</th>
+  //     </tr>
+  //   </thead>
+  //   <tbody></tbody>
+  // </table>`;
+  //   document.querySelector(".receipt > div table tbody").innerHTML =
+  //     renderReceipt.join("");
+  // }
+
+
   // handleEvents
   // add product
   const handleAddProduct = () => {
@@ -218,7 +320,7 @@ const render = () => {
     const getName = document.querySelector("#nameproduct");
     const getPrice = document.querySelector("#priceproduct");
     const getDescription = document.querySelector("#description-product");
-    const getImg = document.getElementById("imgId");
+    const getImg = document.getElementById("imgpreview");
     const getType = document.querySelector("#type-select");
     submit.onclick = () => {
       const product = {
@@ -257,7 +359,7 @@ const render = () => {
     );
     getBtn.forEach((element) => {
       element.onclick = () => {
-        // if (!confirm("Xoá")) return;
+        if (!confirm("Bạn có chắc chắn xóa không?")) return;
         deleteProduct(element.dataset.product);
         render();
       };
@@ -388,7 +490,7 @@ const render = () => {
     const getBtn = document.querySelectorAll("button[data-user][type=delete]");
     getBtn.forEach((element) => {
       element.onclick = () => {
-        if (!confirm("Xoá")) return;
+        if (!confirm("Bạn có chắc chắn xóa không?")) return;
         deleteUser(element.dataset.user);
         render();
       };
