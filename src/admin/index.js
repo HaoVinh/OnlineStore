@@ -541,28 +541,18 @@ const render = () => {
       const getIsAdmin = document.querySelector(
         `.isAdmin[data-user="${index}"]`
       );
-      const getAddress = document.querySelector(
-        `.address[data-user="${index}"]`
-      );
-      const getPhoneNumber = document.querySelector(
-        `.phoneNumber[data-user="${index}"]`
-      );
       item.onclick = () => {
         const user = {
           id: getId.innerHTML,
           password: getPassword.innerHTML,
           isAdmin: getIsAdmin.innerHTML,
-          address: getAddress.innerHTML,
-          phoneNumber: getPhoneNumber.innerHTML,
         };
         if (!validateValue(userList, user, "UserID đã tồn tại", "Thiếu"))
           return;
         getId.setAttribute("contenteditable", "true");
         getPassword.setAttribute("contenteditable", "true");
         getIsAdmin.setAttribute("contenteditable", "true");
-        getAddress.setAttribute("contenteditable", "true");
-        getPhoneNumber.setAttribute("contenteditable", "true");
-        updateUser(index, user);
+        updateUser(index.toString(), user);
         render();
       };
     });
